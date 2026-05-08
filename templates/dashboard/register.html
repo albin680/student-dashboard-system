@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Account</title>
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#312e81);
+    padding:20px;
+}
+
+/* REGISTER CARD */
+
+.container{
+    width:370px;
+    background:rgba(255,255,255,0.08);
+    padding:30px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* LOGO */
+
+.logo{
+    width:70px;
+    height:70px;
+    margin:0 auto 20px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo i{
+    font-size:28px;
+    color:white;
+}
+
+/* TITLE */
+
+h2{
+    text-align:center;
+    color:white;
+    margin-bottom:8px;
+    font-size:28px;
+    font-weight:600;
+}
+
+.subtitle{
+    text-align:center;
+    color:#cbd5e1;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+/* INPUT BOX */
+
+.input-box{
+    position:relative;
+    margin-bottom:18px;
+}
+
+.input-box i{
+    position:absolute;
+    top:50%;
+    left:15px;
+    transform:translateY(-50%);
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.input-box input,
+.input-box select{
+    width:100%;
+    padding:13px 15px 13px 42px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.input-box input::placeholder{
+    color:#cbd5e1;
+}
+
+.input-box input:focus,
+.input-box select:focus{
+    background:rgba(255,255,255,0.18);
+}
+
+/* SELECT OPTION */
+
+select option{
+    color:black;
+}
+
+/* BUTTON */
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#10b981,#059669);
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    opacity:0.95;
+}
+
+/* LOGIN LINK */
+
+.login-link{
+    margin-top:22px;
+    text-align:center;
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.login-link a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.login-link a:hover{
+    text-decoration:underline;
+}
+
+/* ERROR MESSAGE */
+
+.error{
+    background:#ef4444;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:18px;
+    text-align:center;
+    font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+    .container{
+        width:100%;
+        padding:25px;
+    }
+
+    h2{
+        font-size:24px;
+    }
+
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- REGISTER CARD -->
+
+<div class="container">
+
+<!-- LOGO -->
+
+<div class="logo">
+<i class="fa-solid fa-user-plus"></i>
+</div>
+
+<!-- TITLE -->
+
+<h2>Create Account</h2>
+
+<p class="subtitle">
+Register to access the dashboard system
+</p>
+
+<!-- ERROR -->
+
+{% if error %}
+
+<div class="error">
+{{ error }}
+</div>
+
+{% endif %}
+
+<!-- FORM -->
+
+<form method="POST">
+
+{% csrf_token %}
+
+<!-- USERNAME -->
+
+<div class="input-box">
+
+<i class="fa-solid fa-user"></i>
+
+<input
+type="text"
+name="username"
+placeholder="Enter Username"
+required
+>
+
+</div>
+
+<!-- EMAIL -->
+
+<div class="input-box">
+
+<i class="fa-solid fa-envelope"></i>
+
+<input
+type="email"
+name="email"
+placeholder="Enter Email"
+required
+>
+
+</div>
+
+<!-- PASSWORD -->
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+name="password"
+placeholder="Enter Password"
+required
+>
+
+</div>
+
+<!-- ROLE -->
+
+<div class="input-box">
+
+<i class="fa-solid fa-users"></i>
+
+<select name="role">
+
+<option value="student">
+Student
+</option>
+
+<option value="faculty">
+Faculty
+</option>
+
+</select>
+
+</div>
+
+<!-- BUTTON -->
+
+<button type="submit">
+Create Account
+</button>
+
+</form>
+
+<!-- LOGIN LINK -->
+
+<div class="login-link">
+
+Already have an account?
+
+<a href="{% url 'login' %}">
+Login
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

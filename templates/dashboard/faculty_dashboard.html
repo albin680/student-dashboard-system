@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Faculty Dashboard</title>
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#eef2ff;
+    transition:0.4s;
+}
+
+/* DARK MODE */
+
+.dark{
+    background:#0f172a;
+    color:white;
+}
+
+/* NAVBAR */
+
+.navbar{
+    width:100%;
+    padding:18px 40px;
+    background:linear-gradient(135deg,#111827,#1e3a8a);
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.left h2{
+    font-size:28px;
+    font-weight:600;
+}
+
+.right{
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+/* BUTTONS */
+
+button{
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:500;
+}
+
+.notify-btn,
+.toggle-btn,
+.logout-btn{
+    padding:10px 18px;
+    color:white;
+}
+
+.notify-btn{
+    background:#2563eb;
+}
+
+.toggle-btn{
+    background:#111827;
+}
+
+.logout-btn{
+    background:#ef4444;
+}
+
+.notify-btn:hover,
+.toggle-btn:hover,
+.logout-btn:hover{
+    transform:translateY(-2px);
+    opacity:0.9;
+}
+
+/* MAIN CONTENT */
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:40px auto;
+}
+
+/* CARD */
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+.dark .card{
+    background:#1e293b;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.card-header h3{
+    font-size:24px;
+    font-weight:600;
+}
+
+/* TABLE */
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#2563eb;
+    color:white;
+}
+
+table th,
+table td{
+    padding:16px;
+    text-align:left;
+}
+
+table tr:nth-child(even){
+    background:#f8fafc;
+}
+
+.dark table tr:nth-child(even){
+    background:#334155;
+}
+
+.dark table th{
+    background:#1d4ed8;
+}
+
+/* STATUS BADGE */
+
+.badge{
+    background:#dcfce7;
+    color:#166534;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+/* NOTIFICATION */
+
+.notification-popup{
+    position:fixed;
+    top:90px;
+    right:30px;
+    width:320px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    display:none;
+    z-index:1000;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.dark .notification-popup{
+    background:#1e293b;
+}
+
+.notification-popup p{
+    margin:12px 0;
+}
+
+/* CHATBOT BUTTON */
+
+.chat-toggle{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:white;
+    font-size:24px;
+    box-shadow:0 8px 20px rgba(37,99,235,0.3);
+    z-index:1000;
+}
+
+/* CHATBOT */
+
+.chatbot{
+    position:fixed;
+    bottom:100px;
+    right:25px;
+    width:350px;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    display:none;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+.dark .chatbot{
+    background:#1e293b;
+}
+
+.chat-header{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:white;
+    padding:18px;
+    font-weight:600;
+}
+
+.chat-body{
+    height:280px;
+    overflow-y:auto;
+    padding:15px;
+}
+
+.message{
+    margin-bottom:15px;
+    padding:12px;
+    border-radius:12px;
+    max-width:80%;
+}
+
+.bot{
+    background:#dbeafe;
+    color:#1e3a8a;
+}
+
+.user{
+    background:#2563eb;
+    color:white;
+    margin-left:auto;
+    text-align:right;
+}
+
+.chat-input{
+    display:flex;
+    border-top:1px solid #ddd;
+}
+
+.chat-input input{
+    flex:1;
+    padding:14px;
+    border:none;
+    outline:none;
+}
+
+.chat-input button{
+    background:#2563eb;
+    color:white;
+    padding:0 20px;
+    border-radius:0;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .chatbot{
+        width:90%;
+        right:5%;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="left">
+<i class="fa-solid fa-user-tie fa-2x"></i>
+<h2>Faculty Dashboard</h2>
+</div>
+
+<div class="right">
+
+<button class="notify-btn" onclick="toggleNotifications()">
+<i class="fa-solid fa-bell"></i>
+</button>
+
+<button class="toggle-btn" onclick="toggleDarkMode()">
+<i class="fa-solid fa-moon"></i>
+</button>
+
+<a href="{% url 'logout' %}">
+<button class="logout-btn">
+<i class="fa-solid fa-right-from-bracket"></i>
+ Logout
+</button>
+</a>
+
+</div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="container">
+
+<div class="card">
+
+<div class="card-header">
+
+<h3>Student Enquiries</h3>
+
+<span class="badge">
+{{ enquiries|length }} Enquiries
+</span>
+
+</div>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>Student</th>
+<th>Subject</th>
+<th>Message</th>
+<th>Date</th>
+</tr>
+
+{% for enquiry in enquiries %}
+
+<tr>
+
+<td>{{ enquiry.student.username }}</td>
+<td>{{ enquiry.subject }}</td>
+<td>{{ enquiry.message }}</td>
+<td>{{ enquiry.created_at }}</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+<td colspan="4">
+No enquiries available
+</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- NOTIFICATIONS -->
+
+<div class="notification-popup" id="notificationBox">
+
+<h3>Faculty Notifications</h3>
+
+<p>🔔 New student enquiry received</p>
+<hr>
+
+<p>📢 Dashboard updated successfully</p>
+
+</div>
+
+<!-- CHATBOT BUTTON -->
+
+<button class="chat-toggle" onclick="toggleChatbot()">
+<i class="fa-solid fa-comment"></i>
+</button>
+
+<!-- CHATBOT -->
+
+<div class="chatbot" id="chatbotBox">
+
+<div class="chat-header">
+🤖 Faculty Assistant
+</div>
+
+<div class="chat-body" id="chatBody">
+
+<div class="message bot">
+Hello Faculty! How can I help you today?
+</div>
+
+</div>
+
+<div class="chat-input">
+
+<input
+type="text"
+id="userInput"
+placeholder="Type your message..."
+>
+
+<button onclick="sendMessage()">
+Send
+</button>
+
+</div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+function toggleDarkMode(){
+
+    document.body.classList.toggle('dark');
+
+}
+
+function toggleNotifications(){
+
+    const box = document.getElementById('notificationBox');
+
+    if(box.style.display === 'block'){
+        box.style.display = 'none';
+    }
+    else{
+        box.style.display = 'block';
+    }
+
+}
+
+function toggleChatbot(){
+
+    const chatbot = document.getElementById('chatbotBox');
+
+    if(chatbot.style.display === 'block'){
+        chatbot.style.display = 'none';
+    }
+    else{
+        chatbot.style.display = 'block';
+    }
+
+}
+
+function sendMessage(){
+
+    let input = document.getElementById('userInput');
+
+    let message = input.value;
+
+    if(message.trim() === ''){
+        return;
+    }
+
+    let chatBody = document.getElementById('chatBody');
+
+    // USER MESSAGE
+
+    chatBody.innerHTML += `
+    <div class="message user">
+        ${message}
+    </div>
+    `;
+
+    // BOT RESPONSE
+
+    setTimeout(()=>{
+
+        chatBody.innerHTML += `
+        <div class="message bot">
+            Thank you for your message. Faculty Assistant will help you soon.
+        </div>
+        `;
+
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+    },500);
+
+    input.value='';
+
+}
+
+</script>
+
+</body>
+</html>

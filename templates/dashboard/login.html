@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login</title>
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#4f46e5);
+    position:relative;
+}
+
+/* BACKGROUND GLOW */
+
+.circle1,
+.circle2,
+.circle3{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+}
+
+.circle1{
+    width:300px;
+    height:300px;
+    background:#2563eb;
+    top:-100px;
+    left:-100px;
+    opacity:0.5;
+}
+
+.circle2{
+    width:300px;
+    height:300px;
+    background:#7c3aed;
+    bottom:-100px;
+    right:-100px;
+    opacity:0.5;
+}
+
+.circle3{
+    width:250px;
+    height:250px;
+    background:#06b6d4;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    opacity:0.2;
+}
+
+/* LOGIN CARD */
+
+.container{
+    width:400px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:28px;
+    padding:45px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    color:white;
+    position:relative;
+    z-index:10;
+    animation:fadeIn 1s ease;
+}
+
+/* ANIMATION */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.logo{
+    width:80px;
+    height:80px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    border-radius:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0 auto 20px;
+    box-shadow:0 10px 25px rgba(37,99,235,0.3);
+}
+
+.logo i{
+    font-size:35px;
+    color:white;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:8px;
+    font-size:32px;
+    font-weight:600;
+}
+
+.subtitle{
+    text-align:center;
+    color:#dbeafe;
+    margin-bottom:35px;
+    font-size:14px;
+}
+
+/* INPUT BOX */
+
+.input-box{
+    position:relative;
+    margin-bottom:22px;
+}
+
+.input-box i{
+    position:absolute;
+    top:50%;
+    left:15px;
+    transform:translateY(-50%);
+    color:#94a3b8;
+}
+
+.input-box input{
+    width:100%;
+    padding:14px 14px 14px 45px;
+    border:none;
+    border-radius:14px;
+    outline:none;
+    background:rgba(255,255,255,0.15);
+    color:white;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.input-box input::placeholder{
+    color:#cbd5e1;
+}
+
+.input-box input:focus{
+    background:rgba(255,255,255,0.22);
+    box-shadow:0 0 0 4px rgba(255,255,255,0.1);
+}
+
+/* BUTTON */
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 10px 25px rgba(37,99,235,0.3);
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(37,99,235,0.4);
+}
+
+/* FOOTER */
+
+p{
+    margin-top:25px;
+    text-align:center;
+    font-size:14px;
+    color:#dbeafe;
+}
+
+a{
+    color:white;
+    font-weight:600;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+    .container{
+        width:90%;
+        padding:35px 25px;
+    }
+
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- BACKGROUND -->
+
+<div class="circle1"></div>
+<div class="circle2"></div>
+<div class="circle3"></div>
+
+<!-- LOGIN CARD -->
+
+<div class="container">
+
+<div class="logo">
+<i class="fa-solid fa-user-graduate"></i>
+</div>
+
+<h2>Welcome Back</h2>
+
+<p class="subtitle">
+Login to access your dashboard
+</p>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<div class="input-box">
+
+<i class="fa-solid fa-user"></i>
+
+<input
+type="text"
+name="username"
+placeholder="Enter Username"
+required
+>
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+name="password"
+placeholder="Enter Password"
+required
+>
+
+</div>
+
+<button type="submit">
+Login
+</button>
+
+</form>
+
+<p>
+Don't have an account?
+<a href="{% url 'register' %}">
+Register
+</a>
+</p>
+
+</div>
+
+</body>
+</html>
