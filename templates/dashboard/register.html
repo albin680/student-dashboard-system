@@ -6,10 +6,10 @@
 
 <title>Create Account</title>
 
-<!-- GOOGLE FONT -->
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- FONT AWESOME -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
@@ -30,7 +30,7 @@ body{
     padding:20px;
 }
 
-/* REGISTER CARD */
+
 
 .container{
     width:370px;
@@ -41,7 +41,7 @@ body{
     box-shadow:0 5px 15px rgba(0,0,0,0.15);
 }
 
-/* LOGO */
+
 
 .logo{
     width:70px;
@@ -59,7 +59,7 @@ body{
     color:white;
 }
 
-/* TITLE */
+
 
 h2{
     text-align:center;
@@ -76,7 +76,7 @@ h2{
     font-size:14px;
 }
 
-/* INPUT BOX */
+
 
 .input-box{
     position:relative;
@@ -114,13 +114,13 @@ h2{
     background:rgba(255,255,255,0.18);
 }
 
-/* SELECT OPTION */
+
 
 select option{
     color:black;
 }
 
-/* BUTTON */
+
 
 button{
     width:100%;
@@ -140,7 +140,7 @@ button:hover{
     opacity:0.95;
 }
 
-/* LOGIN LINK */
+
 
 .login-link{
     margin-top:22px;
@@ -159,7 +159,7 @@ button:hover{
     text-decoration:underline;
 }
 
-/* ERROR MESSAGE */
+
 
 .error{
     background:#ef4444;
@@ -171,7 +171,7 @@ button:hover{
     font-size:14px;
 }
 
-/* MOBILE */
+
 
 @media(max-width:480px){
 
@@ -191,17 +191,17 @@ button:hover{
 </head>
 <body>
 
-<!-- REGISTER CARD -->
+
 
 <div class="container">
 
-<!-- LOGO -->
+
 
 <div class="logo">
 <i class="fa-solid fa-user-plus"></i>
 </div>
 
-<!-- TITLE -->
+
 
 <h2>Create Account</h2>
 
@@ -209,7 +209,7 @@ button:hover{
 Register to access the dashboard system
 </p>
 
-<!-- ERROR -->
+
 
 {% if error %}
 
@@ -219,13 +219,13 @@ Register to access the dashboard system
 
 {% endif %}
 
-<!-- FORM -->
+
 
 <form method="POST">
 
 {% csrf_token %}
 
-<!-- USERNAME -->
+
 
 <div class="input-box">
 
@@ -240,7 +240,7 @@ required
 
 </div>
 
-<!-- EMAIL -->
+
 
 <div class="input-box">
 
@@ -255,7 +255,7 @@ required
 
 </div>
 
-<!-- PASSWORD -->
+
 
 <div class="input-box">
 
@@ -270,7 +270,7 @@ required
 
 </div>
 
-<!-- ROLE -->
+
 
 <div class="input-box">
 
@@ -290,7 +290,7 @@ Faculty
 
 </div>
 
-<!-- BUTTON -->
+
 
 <button type="submit">
 Create Account
@@ -298,7 +298,7 @@ Create Account
 
 </form>
 
-<!-- LOGIN LINK -->
+
 
 <div class="login-link">
 

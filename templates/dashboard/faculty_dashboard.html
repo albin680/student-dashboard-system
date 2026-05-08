@@ -6,10 +6,10 @@
 
 <title>Faculty Dashboard</title>
 
-<!-- GOOGLE FONT -->
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- FONT AWESOME -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
@@ -26,14 +26,14 @@ body{
     transition:0.4s;
 }
 
-/* DARK MODE */
+
 
 .dark{
     background:#0f172a;
     color:white;
 }
 
-/* NAVBAR */
+
 
 .navbar{
     width:100%;
@@ -66,7 +66,7 @@ body{
     align-items:center;
 }
 
-/* BUTTONS */
+
 
 button{
     border:none;
@@ -102,7 +102,7 @@ button{
     opacity:0.9;
 }
 
-/* MAIN CONTENT */
+
 
 .container{
     width:90%;
@@ -110,7 +110,7 @@ button{
     margin:40px auto;
 }
 
-/* CARD */
+
 
 .card{
     background:white;
@@ -140,7 +140,7 @@ button{
     font-weight:600;
 }
 
-/* TABLE */
+
 
 .table-wrapper{
     overflow-x:auto;
@@ -174,7 +174,6 @@ table tr:nth-child(even){
     background:#1d4ed8;
 }
 
-/* STATUS BADGE */
 
 .badge{
     background:#dcfce7;
@@ -185,7 +184,7 @@ table tr:nth-child(even){
     font-weight:600;
 }
 
-/* NOTIFICATION */
+
 
 .notification-popup{
     position:fixed;
@@ -208,7 +207,7 @@ table tr:nth-child(even){
     margin:12px 0;
 }
 
-/* CHATBOT BUTTON */
+
 
 .chat-toggle{
     position:fixed;
@@ -224,7 +223,7 @@ table tr:nth-child(even){
     z-index:1000;
 }
 
-/* CHATBOT */
+
 
 .chatbot{
     position:fixed;
@@ -293,7 +292,6 @@ table tr:nth-child(even){
     border-radius:0;
 }
 
-/* MOBILE */
 
 @media(max-width:768px){
 
@@ -313,7 +311,7 @@ table tr:nth-child(even){
 </head>
 <body>
 
-<!-- NAVBAR -->
+
 
 <div class="navbar">
 
@@ -343,7 +341,7 @@ table tr:nth-child(even){
 
 </div>
 
-<!-- MAIN CONTENT -->
+
 
 <div class="container">
 
@@ -399,7 +397,7 @@ No enquiries available
 
 </div>
 
-<!-- NOTIFICATIONS -->
+
 
 <div class="notification-popup" id="notificationBox">
 
@@ -412,13 +410,13 @@ No enquiries available
 
 </div>
 
-<!-- CHATBOT BUTTON -->
+
 
 <button class="chat-toggle" onclick="toggleChatbot()">
 <i class="fa-solid fa-comment"></i>
 </button>
 
-<!-- CHATBOT -->
+
 
 <div class="chatbot" id="chatbotBox">
 
@@ -450,7 +448,6 @@ Send
 
 </div>
 
-<!-- JAVASCRIPT -->
 
 <script>
 
@@ -498,7 +495,7 @@ function sendMessage(){
 
     let chatBody = document.getElementById('chatBody');
 
-    // USER MESSAGE
+    
 
     chatBody.innerHTML += `
     <div class="message user">
@@ -506,7 +503,6 @@ function sendMessage(){
     </div>
     `;
 
-    // BOT RESPONSE
 
     setTimeout(()=>{
 
