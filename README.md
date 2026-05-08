@@ -1,6 +1,6 @@
 # Student Dashboard System
 
-A Django-based dashboard system for students and faculty.
+Student Dashboard System is a Django-based web application developed for managing student and faculty interactions through separate dashboard interfaces. The system includes secure login and registration, student enquiry submission, enquiry history tracking, faculty enquiry management, notifications, chatbot integration, and dark/light mode support using HTML, CSS, JavaScript, and Django.
 
 1. Features
 
