@@ -23,7 +23,7 @@ A Django-based dashboard system for students and faculty.
 3. Installation
 
 ```bash
-git clone https://github.com/albinjoy680/student-dashboard-system.git
+git clone https://github.com/albin680/student-dashboard-system.git
 ```
 
 ```bash
